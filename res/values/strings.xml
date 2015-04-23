@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">LogSummary</string>
+    <string name="app_preferences_file">ru.org.adons.slog.preferences_file</string>
+    
+    <!-- main activity -->
+    <string name="main_activity_title">Login</string>
+    <string name="main_text_password_hint">Password</string>
+    <string name="main_button_login_text">Login</string>
+    <string name="main_string_password_default_value">0</string>
+    <string name="main_string_logging_warning">Incorrect Password\nDefault value is \'admin\'</string>
+
+    <!-- log activity -->
+    <string name="log_activity_title">Used Applications Info</string>
+    <string name="log_text_service_status_text">Log Service status</string>
+    <string name="log_pref_key_switch">switch_key</string>
+    <string name="log_intent_key_item_id">ru.org.adons.slog.item_id</string>
+
+    <!-- item activity -->
+    <string name="item_activity_title">Application Details</string>
+
+    <!-- log service -->
+    <string name="service_toast_scheduled">Service Scheduled with interval</string>
+    <string name="service_toast_unscheduled">Service Stopped</string>
+    <string name="service_file_name">slog.txt</string>
+    <!-- default interval 15 min -->
+    <string name="service_interval_default">15</string>
+
+    <string-array name="service_filter_exclude_app">
+        <item>com.android</item>
+        <item>com.google</item>
+        <item>com.lenovo</item>
+        <item>android.</item>
+        <item>system</item>
+    </string-array>
+    <string-array name="service_filter_include_app">
+        <item>com.android.browser</item>
+        <item>com.android.chrome</item>
+        <item>com.google.android.youtube</item>
+    </string-array>
+
+</resources>
