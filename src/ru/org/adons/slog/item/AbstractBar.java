@@ -1,4 +1,4 @@
-package ru.org.adons.slog.item.bar;
+package ru.org.adons.slog.item;
 
 import android.graphics.Rect;
 
