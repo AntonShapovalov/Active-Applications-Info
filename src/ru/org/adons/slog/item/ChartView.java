@@ -2,6 +2,9 @@ package ru.org.adons.slog.item;
 
 import ru.org.adons.slog.LogItem;
 import ru.org.adons.slog.R;
+import ru.org.adons.slog.item.bar.Bar;
+import ru.org.adons.slog.item.bar.HorizontalBar;
+import ru.org.adons.slog.item.bar.VerticalBar;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;

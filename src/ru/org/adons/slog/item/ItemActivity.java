@@ -21,7 +21,7 @@ public class ItemActivity extends Activity {
 		LogDataHolder holder = LogDataHolder.getHolder(null);
 		LogItem item = holder.getItems().get(itemID);
 		
-		setContentView(new ChartView(this, item));
+		setContentView(new ChartViewGrid(this, item));
 	}
 
 }
