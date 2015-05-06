@@ -49,7 +49,7 @@ public abstract class AbstractTimeGrid implements TimeGrid {
 		int[] value;
 		for (int i = 0; i < rowCount; i++) {
 			for (int j = 0; j < colCount; j++) {
-				k = i + 1;
+				k = i;
 				k0 = j + 1;
 				key = String.valueOf(k) + String.valueOf(k0);
 				value = new int[] { i, j };

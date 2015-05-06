@@ -27,7 +27,7 @@ public class ListDataAdapter extends BaseAdapter {
 
 	public ListDataAdapter(Context context) {
 		this.context = context;
-		LogDataHolder dh = LogDataHolder.getHolder(context);
+		LogDataHolder dh = LogDataHolder.getHolder(null);
 		runCount = dh.getCount();
 		items = dh.getItems();
 		inflater = LayoutInflater.from(context);

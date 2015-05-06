@@ -19,7 +19,7 @@ public class HorizontalTimeGrid extends AbstractTimeGrid {
 		int[] value;
 		for (int i = 0; i < rowCount; i++) {
 			for (int j = 0; j < colCount; j++) {
-				k = (j + 1) / 5 + i * 2 + 1;
+				k = (j + 1) / 5 + i * 2;
 				k0 = j % 4 + 1;
 				key = String.valueOf(k) + String.valueOf(k0);
 				value = new int[] { i, j };
