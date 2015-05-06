@@ -69,13 +69,13 @@ public class ListDataAdapter extends BaseAdapter {
 		holder.percent.setText(r + "%");
 		int bColor;
 		if (r <= 25) {
-			bColor = R.color.green10;
+			bColor = R.color.green12;
 		} else if (25 < r && r <= 50) {
-			bColor = R.color.orange10;
+			bColor = R.color.orange12;
 		} else if (50 < r && r <= 75) {
-			bColor = R.color.red10;
+			bColor = R.color.red12;
 		} else {
-			bColor = R.color.red08;
+			bColor = R.color.red10;
 		}
 		holder.percent.setBackgroundColor(context.getResources().getColor(bColor));
 

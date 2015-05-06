@@ -8,7 +8,7 @@
     <string name="main_activity_title">Login</string>
     <string name="main_text_password_hint">Password</string>
     <string name="main_button_login_text">Login</string>
-    <string name="main_string_password_default_value">0</string>
+    <string name="main_string_password_default_value">admin01</string>
     <string name="main_string_logging_warning">Incorrect Password\nDefault value is \'admin\'</string>
 
     <!-- log activity -->

@@ -40,7 +40,8 @@ public class ServiceScheduler {
 			break;
 		}
 		// Schedule the alarm
-		// TODO: setInexactRepeating for main version, setRepeating for test only
+		// TODO: setInexactRepeating for main version, setRepeating for test
+		// only
 		alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, firstTime, interval, serviceIntent);
 	}
 
