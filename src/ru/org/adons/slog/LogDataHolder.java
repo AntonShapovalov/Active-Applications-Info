@@ -227,7 +227,7 @@ public class LogDataHolder {
 			sb.append(item.getCount()).append(";");
 			sb.append(item.getTime()).append("\n");
 		}
-		//Log.i("LogService", sb.toString());
+		// Log.i("LogService", sb.toString());
 		return sb.toString();
 	}
 
