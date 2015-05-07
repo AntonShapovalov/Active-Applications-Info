@@ -1,5 +1,6 @@
 package ru.org.adons.slog.list;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ru.org.adons.slog.LogDataHolder;
@@ -17,7 +18,7 @@ public class ListDataAdapter extends BaseAdapter {
 
 	private Context context;
 	private int runCount;
-	private List<LogItem> items;
+	private List<LogItem> items = new ArrayList<LogItem>();
 	private LayoutInflater inflater;
 
 	private static class ViewHolder {
@@ -29,7 +30,7 @@ public class ListDataAdapter extends BaseAdapter {
 		this.context = context;
 		LogDataHolder dh = LogDataHolder.getHolder(null);
 		runCount = dh.getCount();
-		items = dh.getItems();
+		items.addAll(dh.getItems());
 		inflater = LayoutInflater.from(context);
 	}
 
