@@ -15,6 +15,7 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.database.DataSetObservable;
 import android.text.TextUtils;
 import android.text.format.Time;
 
@@ -32,6 +33,8 @@ public class LogDataHolder {
 	private Time time = new Time(Time.getCurrentTimezone());
 	String[] excludeFilter;
 	String[] includeFilter;
+	// to update UI list if data were updated by service
+	public final DataSetObservable observable = new DataSetObservable();
 
 	// private constructor
 	private LogDataHolder() {
@@ -60,6 +63,8 @@ public class LogDataHolder {
 		loadFile();
 		// load current activity
 		loadSystem();
+		// notify UI about update
+		observable.notifyChanged();
 	}
 
 	private void loadFile() {

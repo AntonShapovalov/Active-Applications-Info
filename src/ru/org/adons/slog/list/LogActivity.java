@@ -1,6 +1,7 @@
 package ru.org.adons.slog.list;
 
 import ru.org.adons.slog.BootReceiver;
+import ru.org.adons.slog.LogDataHolder;
 import ru.org.adons.slog.R;
 import ru.org.adons.slog.ServiceScheduler;
 import ru.org.adons.slog.item.ItemActivity;
@@ -9,6 +10,7 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,6 +23,8 @@ import android.widget.ToggleButton;
 public class LogActivity extends ListActivity {
 
 	private ServiceScheduler scheduler;
+	private ListDataAdapter adapter;
+	private LogDataHolder dataHolder;
 	// Service switch
 	private SharedPreferences pref;
 	private ToggleButton sw;
@@ -30,13 +34,20 @@ public class LogActivity extends ListActivity {
 	private final StringBuilder sb = new StringBuilder();
 	private final static int RED = R.color.orange01;
 	private final static int GREEN = R.color.green01;
+	private boolean isDataUpdated = true;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		scheduler = new ServiceScheduler(this);
 		setContentView(R.layout.activity_log);
-		setListAdapter(new ListDataAdapter(this));
+		adapter = new ListDataAdapter(this);
+		setListAdapter(adapter);
+		dataHolder = LogDataHolder.getHolder(null);
+
+		// to update UI list if data were updated by service
+		isDataUpdated = true;
+		dataHolder.observable.registerObserver(new DataObserver());
 
 		// initialize text status, set in setOnCheckedChangeListener
 		statusBackgroud = (View) findViewById(R.id.log_view_status_backgroud);
@@ -55,6 +66,19 @@ public class LogActivity extends ListActivity {
 		} else {
 			statusBackgroud.setBackgroundColor(getResources().getColor(RED));
 		}
+	}
+
+	/*
+	 * load data in list
+	 */
+	@Override
+	protected void onResume() {
+		if (isDataUpdated) {
+			adapter.setData(dataHolder);
+			adapter.notifyDataSetChanged();
+			isDataUpdated = false;
+		}
+		super.onResume();
 	}
 
 	/*
@@ -123,6 +147,21 @@ public class LogActivity extends ListActivity {
 		setIntent.addCategory(Intent.CATEGORY_HOME);
 		setIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(setIntent);
+	}
+
+	/*
+	 * get notification if data were updated by service
+	 */
+	private class DataObserver extends DataSetObserver {
+		@Override
+		public void onChanged() {
+			isDataUpdated = true;
+		}
+
+		@Override
+		public void onInvalidated() {
+			isDataUpdated = true;
+		}
 	}
 
 }

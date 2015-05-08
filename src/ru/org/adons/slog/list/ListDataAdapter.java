@@ -28,10 +28,13 @@ public class ListDataAdapter extends BaseAdapter {
 
 	public ListDataAdapter(Context context) {
 		this.context = context;
-		LogDataHolder dh = LogDataHolder.getHolder(null);
-		runCount = dh.getCount();
-		items.addAll(dh.getItems());
 		inflater = LayoutInflater.from(context);
+	}
+
+	public void setData(LogDataHolder dh) {
+		runCount = dh.getCount();
+		items.clear();
+		items.addAll(dh.getItems());
 	}
 
 	@Override
