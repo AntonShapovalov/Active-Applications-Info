@@ -7,8 +7,8 @@ import android.graphics.Rect;
 
 public interface TimeGrid {
 
-	public List<Rect[]> getCells();
+    public List<Rect[]> getCells();
 
-	public Map<String, int[]> getIndex();
+    public Map<String, int[]> getIndex();
 
 }

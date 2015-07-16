@@ -27,14 +27,14 @@
             android:label="@string/log_activity_title" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".main.MainActivity" />
         </activity>
         <activity
             android:name=".item.ItemActivity"
             android:label="@string/item_activity_title" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".LogActivity" />
+                android:value=".list.LogActivity" />
         </activity>
 
         <service android:name=".LogService" >

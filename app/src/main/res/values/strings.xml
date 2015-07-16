@@ -10,6 +10,7 @@
     <string name="main_button_login_text">Login</string>
     <string name="main_string_password_default_value">admin</string>
     <string name="main_string_logging_warning">Incorrect Password\nDefault value is \'admin\'</string>
+    <string name="main_action_search">App Search</string>
 
     <!-- log activity -->
     <string name="log_activity_title">Used Applications Info</string>

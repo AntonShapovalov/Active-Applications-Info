@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 20
+    compileSdkVersion 22
     buildToolsVersion "23.0.0 rc2"
 
     defaultConfig {
         applicationId "ru.org.adons.slog"
-        minSdkVersion 4
+        minSdkVersion 8
         targetSdkVersion 22
     }
 
@@ -19,5 +19,5 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:20.0.0'
+    compile 'com.android.support:appcompat-v7:22.2.0'
 }
