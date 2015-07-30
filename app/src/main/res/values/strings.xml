@@ -12,11 +12,12 @@
     <string name="main_string_logging_warning">Incorrect Password\nDefault value is \'admin\'</string>
     <string name="main_action_search">App Search</string>
 
-    <!-- log activity -->
+    <!-- log list activity -->
     <string name="log_activity_title">Used Applications Info</string>
     <string name="log_text_service_status_text">Log Service status</string>
     <string name="log_pref_key_switch">switch_key</string>
     <string name="log_intent_key_item_id">ru.org.adons.slog.item_id</string>
+    <string name="log_search_hint">Search App</string>
 
     <!-- item activity -->
     <string name="item_activity_title">Application Details</string>

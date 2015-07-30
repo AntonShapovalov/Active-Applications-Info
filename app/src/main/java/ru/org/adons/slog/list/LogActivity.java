@@ -1,6 +1,7 @@
 package ru.org.adons.slog.list;
 
 import android.app.ListActivity;
+import android.app.SearchManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -70,9 +71,32 @@ public class LogActivity extends ListActivity {
         } else {
             statusBackground.setBackgroundColor(getResources().getColor(RED));
         }
+
+        handleIntent(getIntent());
     }
 
-    /*
+    /**
+     * handle search intent
+     */
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        handleIntent(intent);
+    }
+
+    private void handleIntent(Intent intent) {
+        String query = null;
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            query = intent.getStringExtra(SearchManager.QUERY);
+        } else if (Intent.ACTION_VIEW.equals(intent.getAction())) {
+            query = intent.getStringExtra(SearchManager.EXTRA_DATA_KEY);
+        }
+        // TODO: update list  - show only application contains query
+        Toast.makeText(this, query, Toast.LENGTH_LONG).show();
+    }
+
+    /**
      * load data in list
      */
     @Override
@@ -85,7 +109,7 @@ public class LogActivity extends ListActivity {
         super.onResume();
     }
 
-    /*
+    /**
      * set Button State and Service Text status from Preferences, even user not
      * click Button in this session
      */
@@ -106,7 +130,7 @@ public class LogActivity extends ListActivity {
         }
     };
 
-    /*
+    /**
      * start or stop Log Service
      */
     private OnClickListener switchClick = new OnClickListener() {
@@ -153,7 +177,7 @@ public class LogActivity extends ListActivity {
         startActivity(setIntent);
     }
 
-    /*
+    /**
      * get notification if data were updated by service
      */
     private class DataObserver extends DataSetObserver {

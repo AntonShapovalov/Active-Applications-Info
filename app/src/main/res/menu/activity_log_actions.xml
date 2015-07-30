@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:slog="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/log_activity_action_search"
         android:icon="@android:drawable/ic_menu_search"
         android:title="@string/main_action_search"
-        slog:showAsAction="always" />
+        android:showAsAction="always" />
 </menu>
