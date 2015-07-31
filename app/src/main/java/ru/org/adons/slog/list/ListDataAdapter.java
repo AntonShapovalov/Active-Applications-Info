@@ -38,6 +38,10 @@ public class ListDataAdapter extends BaseAdapter {
         items.addAll(dh.getItems());
     }
 
+    public void setItems(List<LogItem> items) {
+        this.items = items;
+    }
+
     @Override
     public int getCount() {
         return items.size();

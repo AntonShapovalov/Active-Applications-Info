@@ -7,6 +7,11 @@ import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
 
+import java.util.ArrayList;
+
+import ru.org.adons.slog.LogDataHolder;
+import ru.org.adons.slog.LogItem;
+
 public class SearchProvider extends ContentProvider {
     @Override
     public boolean onCreate() {
@@ -15,13 +20,22 @@ public class SearchProvider extends ContentProvider {
 
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
-        MatrixCursor mCursor = new MatrixCursor(new String[]{"_id", SearchManager.SUGGEST_COLUMN_TEXT_1});
-        if (selectionArgs.length > 0) {
-            mCursor.addRow(new String[]{Integer.toString(1), selectionArgs[0]});
+        Cursor cursor = null;
+        if (selectionArgs[0].length() > 1) {
+            MatrixCursor mCursor = new MatrixCursor(new String[]{"_id", SearchManager.SUGGEST_COLUMN_TEXT_1, SearchManager.SUGGEST_COLUMN_INTENT_EXTRA_DATA});
+            LogDataHolder holder = LogDataHolder.getHolder(null);
+            ArrayList<LogItem> list = (ArrayList<LogItem>) holder.getItems();
+            int i = 1;
+            for (int j = 0; j < list.size(); j++) {
+                if (list.get(j).getName().contains(selectionArgs[0])) {
+                    mCursor.addRow(new String[]{Integer.toString(i), list.get(j).getName(), Integer.toString(j)});
+                    i++;
+                }
+            }
+            if (i > 1) cursor = mCursor;
         }
-        return mCursor;
+        return cursor;
     }
-
 
     @Override
     public String getType(Uri uri) {

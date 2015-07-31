@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -24,7 +25,7 @@ public class MainActivity extends Activity {
 
     public void login(View view) {
         String pass = ((EditText) findViewById(R.id.main_text_password)).getText().toString();
-        if (getString(R.string.main_string_password_default_value).equals(pass)) {
+        if (TextUtils.isEmpty(pass) || getString(R.string.main_string_password_default_value).equals(pass)) {
             Intent intent = new Intent(this, LogActivity.class);
             startActivity(intent);
         } else {

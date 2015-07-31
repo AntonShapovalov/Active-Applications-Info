@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.DataSetObserver;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,8 +20,11 @@ import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import java.util.ArrayList;
+
 import ru.org.adons.slog.BootReceiver;
 import ru.org.adons.slog.LogDataHolder;
+import ru.org.adons.slog.LogItem;
 import ru.org.adons.slog.R;
 import ru.org.adons.slog.ServiceScheduler;
 import ru.org.adons.slog.item.ItemActivity;
@@ -75,9 +79,6 @@ public class LogActivity extends ListActivity {
         handleIntent(getIntent());
     }
 
-    /**
-     * handle search intent
-     */
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
@@ -85,15 +86,42 @@ public class LogActivity extends ListActivity {
         handleIntent(intent);
     }
 
+    /**
+     * handle search intent
+     */
     private void handleIntent(Intent intent) {
         String query = null;
+        int position = -1;
+        ArrayList<LogItem> newItems = new ArrayList<>();
+
+        // click "Go" button
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             query = intent.getStringExtra(SearchManager.QUERY);
+            if (!TextUtils.isEmpty(query) && query.length() > 1) {
+                ArrayList<LogItem> items = (ArrayList<LogItem>) dataHolder.getItems();
+                for (int i = 0; i < items.size(); i++) {
+                    if (items.get(i).getName().contains(query)) {
+                        newItems.add(items.get(i));
+                    }
+                }
+                // show all items
+            } else if (!TextUtils.isEmpty(query) && "*".equals(query)) {
+                newItems.addAll(dataHolder.getItems());
+            }
+
+            // click search suggestion
         } else if (Intent.ACTION_VIEW.equals(intent.getAction())) {
-            query = intent.getStringExtra(SearchManager.EXTRA_DATA_KEY);
+            position = Integer.parseInt(intent.getStringExtra(SearchManager.EXTRA_DATA_KEY));
+            if (position > -1) {
+                newItems.add(dataHolder.getItems().get(position));
+            }
         }
-        // TODO: update list  - show only application contains query
-        Toast.makeText(this, query, Toast.LENGTH_LONG).show();
+
+        // update list
+        if (newItems.size() > 0) {
+            adapter.setItems(newItems);
+            adapter.notifyDataSetChanged();
+        }
     }
 
     /**
